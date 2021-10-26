@@ -10,6 +10,7 @@ struct node
 
 node *head=NULL;
 
+//function to insert node at beginning 
 void insertbeginning(int data)
 {
 	node *temp=new node();
@@ -20,6 +21,7 @@ void insertbeginning(int data)
 	head=temp;
 }
 
+//function to print the finally created linked list
 void print()
 {
 	node *temp=head;
