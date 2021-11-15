@@ -59,12 +59,12 @@ void levelorder(node *root)
 		cout<<temp->data<<" ";
 		if(temp->left!=NULL)
 		{
-			//push right link in queue
+			//push left link node in queue
 			q.push(temp->left);
 		}
 		if(temp->right!=NULL)
 		{
-			//push left link in queue
+			//push right link node in queue
 			q.push(temp->right);
 		}
 		//removing used link from front of queue 
