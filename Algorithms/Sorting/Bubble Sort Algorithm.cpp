@@ -46,14 +46,14 @@ int main()
 	}
 	cout<<endl;
 	bubblesortasec(v);
-	cout<<"Ascending Order Soted Form is:";
+	cout<<"Ascending Order Sorted Form is:";
 	for(int i=0;i<v.size();i++)
 	{
 		cout<<v[i]<<" ";
 	}
 	cout<<endl;
 	bubblesortdesc(v);
-	cout<<"Descending Order Soted Form is:";
+	cout<<"Descending Order Sorted Form is:";
 	for(int i=0;i<v.size();i++)
 	{
 		cout<<v[i]<<" ";
