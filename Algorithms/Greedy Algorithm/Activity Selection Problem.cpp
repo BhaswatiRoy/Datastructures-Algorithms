@@ -2,6 +2,13 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+Activity Selection Problem->
+You are given n activities with their start and finish times.
+Select the maximum number of activities that can be performed by a single person.
+Assume that a person can only work on a single activity at a time
+*/
+
 int main() 
 {
 	vector<vector<int>>v={{10,20},{12,15},{20,30}};
