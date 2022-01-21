@@ -3,9 +3,6 @@ using namespace std;
 
 int main() 
 {
-	//declare the adjacency matrix of v x e size
-//	vector<vector<int>>adj;
-	
 	//v=no of vertices, e=no of edges
 	int v,e;
 	cout<<"Enter number of vertices:";
@@ -13,6 +10,7 @@ int main()
 	cout<<"Enter number of edges:";
 	cin>>e;
 	
+	//declare the adjacency matrix of v x e size
 	int adj[v+1][e+1]={};
 	
 	cout<<"Adjacency Matrix before filling the edges:"<<endl;
