@@ -1,31 +1,28 @@
 #include<iostream>
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 int main() 
 {
 	vector<int>v={-1,4,7,2};
-	int min=-1;
-	//declaring start point of subarray
-	for(int i=0;i<v.size();i++)
+	int n=v.size();
+	int maxsum=INT_MIN;
+	//i denotes starting point
+	for(int i=0;i<n;i++)
 	{
-		//declaring end point of subarray
-		for(int j=0;j<v.size();j++)
+		//j denotes ending point
+		for(int j=i;j<n;j++)
 		{
 			int sum=0;
-			//looping to print all elements within range i to j
+			//k denotes iteration from starting to ending point
 			for(int k=i;k<=j;k++)
 			{
-				//cout<<v[k]<<" ";
+				//finding subarray sum
 				sum+=v[k];
 			}
-			if(min<sum)
-			{
-				min=sum;
-			}
+			//keep updating maxsum variable with maximum value of sum
+			maxsum=max(maxsum,sum);
 		}
 	}
-	cout<<"Maximum Sum Sub Array is:"<<min;
-	return 0;
+	cout<<"Maximum Sum Subarray Is:"<<maxsum<<endl;
 }
-
