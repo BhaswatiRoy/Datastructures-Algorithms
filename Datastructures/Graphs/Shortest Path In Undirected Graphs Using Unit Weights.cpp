@@ -9,6 +9,7 @@ void shortestpath(int v,vector<int>adj[],int sourcenode)
 	queue<int>q;
 	
 	//distance of sourcenode from sourcenode is always 0
+	//distance node at 0 index is marked as 0 as our graph starts from node value 1 so we might get garbage value
 	distance[sourcenode]=distance[0]=0;
 	q.push(sourcenode);
 	while(!q.empty())
