@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+//simple bfs with a bit modification by using a separate extra vector which is distance vector
 void shortestpath(int v,vector<int>adj[],int sourcenode)
 {
 	//define all nodes of the distance vector as the maximum value
