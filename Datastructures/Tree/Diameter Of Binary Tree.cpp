@@ -47,7 +47,7 @@ int findheight(node *root)
 	//this is an extra parameter used over height function to find max value of path which gets stored
 	maxpath=max(maxpath,lh+rh);
 	
-	//in end we are again returning same value as height function did
+	//in end we are again returning same value as height function did for the root node considered at any point
 	return 1+max(lh,rh);
 }
 
