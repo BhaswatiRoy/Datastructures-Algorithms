@@ -31,42 +31,39 @@ node *create()
 	return temp;
 }
 
-int height(node *root)
+//height fining function with a bit modification
+//everytime we are comparing the height of left subtree & right subtree of any node
+int heightbalanced(node *root)
 {
 	if(root==NULL)
 	{
 		return 0;
 	}
-	int lh=height(root->left);
-	int rh=height(root->right);
+	int lh=heightbalanced(root->left);
+	//if by chance left height gives -1 then return -1 (not balanced so lh==-1)
+	if(lh==-1)
+	{
+		return -1;
+	}
+	int rh=heightbalanced(root->right);
+	//if by chance right height gives -1 then return -1 (not balanced so rh==-1)
+	if(rh==-1)
+	{
+		return -1;
+	}
+	//at any point if at any node absolute diff between left & right height is >1 then it is not balanced
+	//and we don't need to check for others this will return -1 denoting tree is not balanced
+	if(abs(lh-rh)>1)
+	{
+		return -1;
+	}
 	
-	//we are taking max of lh and rh and adding 1 for root
-	int ht=max(lh,rh)+1;
-	
-	return ht;
+	return max(lh,rh)+1;
 }
 
 bool isbalanced(node *root)
 {
-	if(root==NULL)
-	{
-		return true;
-	}
-	if(isbalanced(root->left)==false)
-	{
-		return false;
-	}
-	if(isbalanced(root->right)==false)
-	{
-		return false;
-	}
-	//finding height of left subtree
-	int lh=height(root->left);
-	//finding height of right subtree
-	int rh=height(root->right);
-	
-	//if absolute difference of both heights is less than 1 then it is height balanced tree
-	if(abs(lh-rh)<=1)
+	if(heightbalanced(root)!=-1)
 	{
 		return true;
 	}
