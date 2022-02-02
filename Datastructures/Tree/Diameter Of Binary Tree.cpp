@@ -51,6 +51,7 @@ int findheight(node *root)
 	return 1+max(lh,rh);
 }
 
+//diameter is the longest path between any 2 nodes (may or may not pass via root)
 //using the height function to find the diameter
 int finddiameter(node *root)
 {
