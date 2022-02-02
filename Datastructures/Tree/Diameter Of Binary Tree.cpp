@@ -60,7 +60,9 @@ int finddiameter(node *root)
 		return 0;
 	}
 	findheight(root);
-	return maxpath;
+	//as the height function goes on it paralelly calculates the max path too
+	//in end +1 is done for considering the root of the path whose left height & right heights we are taking
+	return maxpath+1;
 }
 
 int main()
