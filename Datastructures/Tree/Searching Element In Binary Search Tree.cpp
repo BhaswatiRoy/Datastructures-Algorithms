@@ -52,14 +52,17 @@ bool search(node *root,int data)
 	{
 		return true;
 	}
+	//if element to be searched is smaller than current node value then go to left subtree
 	else if(data<=root->data)
 	{
-		return search(root->left,data);
+		search(root->left,data);
 	}
-	else if(data>=root->data)
+	//if element to be searched is greater than current node value then go to right subtree
+	else if(data>root->data)
 	{
-		return search(root->right,data);
+		search(root->right,data);
 	}
+	return false;
 }
 
 int main()
