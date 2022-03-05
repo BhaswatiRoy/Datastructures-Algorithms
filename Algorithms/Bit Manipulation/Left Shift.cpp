@@ -1,6 +1,8 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+//n<<x = n*(2^x)
+
 int main()
 {
 	int n,x;
