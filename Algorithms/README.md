@@ -8,3 +8,4 @@ The Algorithms covered are as follows-
 5. Floyd's Algorithm (Hare & Tortoise Algorithm to detect Linked List Cycle)
 6. Kadane's Algorithm (Max Subarray Sum Problem)
 7. Prefix Sum on 1D Vector
+8. Bit Manipulation
