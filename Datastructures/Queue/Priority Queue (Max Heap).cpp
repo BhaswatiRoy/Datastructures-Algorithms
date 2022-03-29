@@ -4,7 +4,7 @@ using namespace std;
 int main() 
 {
 	//Max Heap in STL
-	priority_queue<int,vector<int>>pqmax;
+	priority_queue<int>pqmax;
 	pqmax.push(2);
 	pqmax.push(3);
 	pqmax.push(1);
