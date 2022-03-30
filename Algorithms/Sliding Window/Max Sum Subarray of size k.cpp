@@ -11,29 +11,20 @@ int main()
 	cin>>k;
 	int sum=0,maxsum=0;
 	//trying to attain a window of size k
-	while(j<n)
+	while(j<k)
 	{
-		if(j-i+1<k)
-		{
-			sum+=v[j];
-			j++;
-		}
-		else if(j-i+1==k)
-		{
-			sum+=v[j];
-			break;
-		}
+		sum+=v[j];
+		j++;
 	}
 	//cout<<sum<<endl;
 	maxsum=sum;
 	while(j<n)
 	{
 		sum-=v[i];
-		sum+=v[j+1];
+		sum+=v[j];
 		maxsum=max(sum,maxsum);
 		i++;
 		j++;
 	}
 	cout<<"Maximum Sum Subarray of size "<<k<<" is:"<<maxsum;
 }
-
