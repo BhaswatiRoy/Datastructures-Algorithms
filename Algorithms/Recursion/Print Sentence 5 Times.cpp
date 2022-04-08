@@ -3,7 +3,7 @@ using namespace std;
 
 void name(int count,int base)
 {
-	if(count==5)
+	if(count==base)
 	{
 		return;
 	}
