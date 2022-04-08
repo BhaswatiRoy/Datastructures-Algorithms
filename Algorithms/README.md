@@ -10,3 +10,4 @@ The Algorithms covered are as follows-
 7. Prefix Sum on 1D Vector
 8. Bit Manipulation
 9. Sliding Window
+10. Recursion
