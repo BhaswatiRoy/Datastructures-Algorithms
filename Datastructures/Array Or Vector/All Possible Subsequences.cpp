@@ -33,5 +33,6 @@ int main()
 {
 	vector<int>arr={3,1,2};
 	int n=arr.size();
+	cout<<"All Possible Subsequence With Sum "<<goal<<":"<<endl;
 	printallsubsequence(0,arr,n);
 }
