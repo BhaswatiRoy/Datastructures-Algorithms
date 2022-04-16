@@ -34,7 +34,7 @@ void findcombination(int ind,int target,vector<int>&candidates,vector<vector<int
 	findcombination(ind+1,target,candidates,ans,ds);
 }
 
-vector<vector<int>> combinationsum(vector<int>&candidates,int target)
+vector<vector<int>> combinationsum1(vector<int>&candidates,int target)
 {
 	vector<vector<int>>ans;
 	vector<int>ds;
@@ -47,7 +47,8 @@ int main()
 	vector<int>candidates={2,3,6,7};
 	vector<vector<int>>finalans;
 	int target=7;
-	finalans=combinationsum(candidates,target);
+	finalans=combinationsum1(candidates,target);
+	cout<<"All combinations with target value same element considered more than once:"<<endl;
 	for(int i=0;i<finalans.size();i++)
 	{
 		for(int j=0;j<finalans[i].size();j++)
