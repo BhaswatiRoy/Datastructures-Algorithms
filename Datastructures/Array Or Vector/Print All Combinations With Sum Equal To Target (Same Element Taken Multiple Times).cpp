@@ -5,7 +5,7 @@ using namespace std;
 Combination Sum 1 ->
 We have to print all possible combinations whose sum is target
 Also here we can consider one element multiple times
-TC of brute force approach is (2^n)*k*logn {extra logn due to insertion operation in set)
+TC of brute force approach is (2^n)*k*logn {extra logn due to insertion operation in set}
 TC of optimized approach is (2^n)*k
 {k in both cases is due to pushing one subsquence in final vector}
 */
@@ -61,6 +61,7 @@ void findcombinationoptimal(int idx,int target,vector<int>&candidates,vector<vec
 		return;
 	}
 	//looping goes from current index to end of the vector 
+	//if there are duplicates then we will pick that element only the 1st time and thus avoiding duplication
 	for(int i=idx;i<candidates.size();i++)
 	{
 		//if current index value is greater than target then break from the loop
