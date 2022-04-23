@@ -2,7 +2,7 @@
 using namespace std;
 
 /*
-Subsets 1 ->
+Subsets 2 ->
 We have to print all subsets of the array which has unique elements
 We only need to print the unique subsets in any order
 TC of brute force approach is (2^n)*k + (2^n)*k*log(2^n) = (2^n)log(2^n) {extra logn due to insertion operation in set}
