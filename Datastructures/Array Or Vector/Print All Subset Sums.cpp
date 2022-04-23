@@ -2,7 +2,7 @@
 using namespace std;
 
 /*
-Subset Sum 1 ->
+Subset Sum ->
 We have to store sum of elements of all subsets and store it in vector
 Here we are not considering an element more than once
 TC is (2^n) + (2^n)log(2^n) = (2^n)log(2^n)
