@@ -56,6 +56,7 @@ void findsubset2optimal(int idx,vector<int>&nums,vector<int>&ds,vector<vector<in
 		//but after that when i!=idx we have same elements later so we can't pick them
 		if(i!=idx && nums[i]==nums[i-1])
 		{
+			//continue and don't use that element
 			continue;
 		}
 		//add into the subset 
