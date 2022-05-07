@@ -4,11 +4,15 @@ using namespace std;
 /*
 Memoization-
 TC -> O(n) {as we are linearly calculating the values for all elements like a skewed tree which is O(n) and rest have O(1) TC}
-SC -> o(n) + O(n) {one for recursion stack space and another for the given array
+SC -> o(n) + O(n) {one for recursion stack space and another for the dp vector
 
-Tabulation-
-TC -> O(n) (traversing all the elements to store value in dp vector
-SC -> O(n) {no extra recursion stack space is used}
+Tabulation (without space optimization)-
+TC -> O(n) {traversing all the elements to store value in dp vector}
+SC -> O(n) {no extra recursion stack space is used only the dp vector}
+
+Tabulation (with space optimization)-
+TC -> O(n) {traversing all the elements to store value in dp vector}
+SC -> O(1) {neither extra recursion stack space is used nor the dp vector}
 */
 
 //top down approach
