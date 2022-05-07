@@ -11,3 +11,4 @@ The Algorithms covered are as follows-
 8. Bit Manipulation
 9. Sliding Window
 10. Recursion
+11. Dynamic Programming
