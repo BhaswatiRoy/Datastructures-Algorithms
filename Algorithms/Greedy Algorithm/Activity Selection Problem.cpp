@@ -1,35 +1,40 @@
-#include<iostream>
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 /*
-Activity Selection Problem->
-You are given n activities with their start and finish times.
-Select the maximum number of activities that can be performed by a single person.
-Assume that a person can only work on a single activity at a time
+We try to finish those activities first which have lowest ending time 
+Also we check if next job has starting time which is greater than ending time of last job then only we can perform that
+TC -> n + nlogn + n {we are storing then sorting then traversing}
 */
 
-int main() 
+int maxmeetings(vector<int>&start,vector<int>&end,int n)
 {
-	vector<vector<int>>v={{10,20},{12,15},{20,30}};
-	//sorting a 2d vector on basis of the 2nd value in each element
-	sort(v.begin(),v.end(),[&](vector<int>&a,vector<int>&b)
-	{
-		return a[1]<b[1];
-	});
-	int count=1,end=v[0][1];
-	//since we considered v[0][1] for comparing so we need not to take that anymore
-	for(int i=1;i<v.size();i++)
-	{
-		//start time of next is greater than end time of current then we can choose that
-		if(v[i][0]>=end)
-		{
-			count++;
-			//assigning end time of choosen element as end
-			end=v[i][1];
-		}
-	}
-	cout<<count<<endl;
-	return 0;
+    vector<pair<int,int>>activity;
+    for(int i=0;i<n;i++)
+    {
+        //0th index=end, 1st index=start
+        activity.push_back({end[i],start[i]});
+    }
+    sort(activity.begin(),activity.end());
+    //limit is end time of an activity
+    int limit=activity[0].first,count=1;
+    for(int i=1;i<n;i++)
+    {
+        //if start time of next activity is more than end time of prev activity then only we can do that
+        if(activity[i].second>limit)
+        {
+            limit=activity[i].first;
+            count++;
+        }
+    }
+    return count;
 }
 
+int main()
+{
+	vector<int>start={1,3,0,5,8,5};
+	vector<int>end={2,4,6,7,9,9};
+	int n=start.size();
+	int ans=maxmeetings(start,end,n);
+	cout<<"Number Of Maximum Activities That Can Be Performed:"<<ans<<endl;
+}
