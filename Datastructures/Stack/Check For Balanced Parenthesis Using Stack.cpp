@@ -1,53 +1,66 @@
-#include<iostream>
 #include<bits/stdc++.h>
 using namespace std;
 
-stack<char>st;
-
-void check(string t)
+bool ispar(string x)
 {
-	for(int i=0;i<t.length();i++)
-	{
-		//if open bracket if found then push to stack
-		if(t[i]=='(' || t[i]=='{' || t[i]=='[')
-		{
-			st.push(t[i]);
-		}
-		//if closing bracket is found check further
-		else if(t[i]==')' || t[i]=='}' || t[i]==']')
-		{
-			if(st.empty()==true)
-			{
-				cout<<"Not Balanced!"<<endl;
-				return;
-			}
-			//incase the top element of stack pairs up with 
-			else if(t[i]==')' && st.top()=='(')
-			{
-				st.pop();
-			}
-			else if(t[i]=='}' && st.top()=='{')
-			{
-				st.pop();
-			}
-			else if(t[i]==']' && st.top()=='[')
-			{
-				st.pop();
-			}
-		}
-	}
-	if(st.empty()==true)
-	{
-		cout<<"Balanced!"<<endl;
-	}
-	else
-	{
-		cout<<"Not Balanced!"<<endl;
-	}
+    stack<char>st;
+    for(int i=0;i<x.length();i++)
+    {
+    	//if opening then put in stack
+        if(x[i]=='(' || x[i]=='{' || x[i]=='[')
+        {
+            st.push(x[i]);
+        }
+        //if closing then check
+        else if(x[i]==')' || x[i]=='}' || x[i]==']')
+        {
+        	//if stack not empty
+            if(!st.empty())
+            {
+            	//if pais match then remove from stack
+                if(st.top()=='(' && x[i]==')')
+                {
+                    st.pop();
+                }
+                else if(st.top()=='{' && x[i]=='}')
+                {
+                    st.pop();
+                }
+                else if(st.top()=='[' && x[i]==']')
+                {
+                    st.pop();
+                }
+                //if pairs don't match then not valid
+                else
+                {
+                    return false;
+                }
+            }
+            //if stack empty then no opening braces is present but closing present so not valid
+            else if(st.empty())
+            {
+                return false;
+            }
+        }
+    }
+    //in end if stack is empty mean all pairs matched then valid
+    if(st.empty())
+    {
+        return true;
+    }
+    return false;
 }
 
 int main()
 {
-	string s="{[(]}";
-	check(s);
+	string str="[{()}]";
+	bool ans=ispar(str);
+	if(ans==true)
+	{
+		cout<<"Yes Valid !!"<<endl;
+	}
+	else if(ans==false)
+	{
+		cout<<"Not Valid !!"<<endl;
+	}
 }
