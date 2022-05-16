@@ -43,9 +43,10 @@ int findheight(node *root)
 	}
 	int lh=findheight(root->left);
 	int rh=findheight(root->right);
+	
 	//maximum path length is maximum of path length and lh+rh value
 	//this is an extra parameter used over height function to find max value of path which gets stored
-	maxpath=max(maxpath,lh+rh);
+	maxpath=max(maxpath,1+lh+rh);
 	
 	//in end we are again returning same value as height function did for the root node considered at any point
 	return 1+max(lh,rh);
@@ -62,7 +63,7 @@ int finddiameter(node *root)
 	findheight(root);
 	//as the height function goes on it paralelly calculates the max path too
 	//in end +1 is done for considering the root of the path whose left height & right heights we are taking
-	return maxpath+1;
+	return maxpath;
 }
 
 int main()
