@@ -44,28 +44,24 @@ node *insert(node *root,int data)
 //function to find height
 int findheight(node *root)
 {
-	node *temp=root;
 	int a,b;
 	if(root==NULL)
 	{
 		return -1;
 	}
+	//height of left subtree
+	a=findheight(root->left);
+	//height of right subtree
+	b=findheight(root->right);
+	if(a>b)
+	{
+		//+1 is for counting root
+		return a+1;
+	}
 	else
 	{
-		//height of left subtree
-		a=findheight(root->left);
-		//height of right subtree
-		b=findheight(root->right);
-		if(a>b)
-		{
-			//+1 is for counting root
-			return a+1;
-		}
-		else
-		{
-			//+1 is for counting root
-			return b+1;
-		}
+		//+1 is for counting root
+		return b+1;
 	}
 }
 
