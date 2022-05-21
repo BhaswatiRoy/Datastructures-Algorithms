@@ -20,7 +20,7 @@ bool searchmatrixlinear(vector<vector<int>>& matrix, int target)
 //binary search -> TC= nlogm
 bool searchmatrixbinary(vector<vector<int>>& matrix, int target) 
 {
-    //x = column size , y = row size
+    //n = column size , m = row size
     int n=matrix.size();
     int m=matrix[0].size();
     //matrix has 0 rows or 0 colums
