@@ -1,6 +1,12 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+/*
+All Possible Subsequences ->
+We have two choices for each character either to pick it or not pick it
+TC is (2^n)
+*/
+
 vector<int>ds;
 
 void printallsubsequence(int idx,vector<int>&arr,int n)
