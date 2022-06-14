@@ -40,10 +40,14 @@ int maxpath(node *root)
 		return 0;
 	}
 	//if sum of left/right subtree is -ve then we will not consider that instead we will consider 0
+	//considering -ve value nodes will never give us max path sum instead ignoring them will give
+	//finding left path sum
 	int leftsum=max(0,maxpath(root->left));
+	//finding right path sum
 	int rightsum=max(0,maxpath(root->right));
 	
 	//this is an extra parameter used over height function to find max sum value of path which gets stored
+	//path sum for any given node is left path sum + right path sum + node value and update max path sum if current path sum is greater
 	maxval=max(maxval, (leftsum+rightsum+root->data));
 	
 	int data=root->data;
