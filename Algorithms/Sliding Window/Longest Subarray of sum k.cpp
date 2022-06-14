@@ -13,26 +13,19 @@ int main()
 	while(j<n)
 	{
 		sum+=v[j];
-		if(sum<k)
+		//while sum is more than k then keep removing elements & increment i 
+		while(sum>k)
 		{
-			j++;
+			sum-=v[i];
+			i++;
 		}
-		else if(sum>k)
-		{
-			//then we have to remove some elements from beginning which was contributing to sum
-			while(sum>k)
-			{
-				sum-=v[i];
-				i++;
-			}
-			j++;
-		}
-		else if(sum==k)
+		//if we get required sum then increment size
+		if(sum==k)
 		{
 			//storing the window size if greater than current window size
 			maxsize=max(maxsize,(j-i+1));
-			j++;
 		}
+		j++;
 	}
 	cout<<"Size of Longest Subarray with sum k is:"<<maxsize<<endl;
 }
