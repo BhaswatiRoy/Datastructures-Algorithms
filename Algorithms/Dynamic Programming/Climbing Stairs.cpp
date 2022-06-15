@@ -2,7 +2,7 @@
 using namespace std;
 
 /*
-Clibing Stairs - In how many ways we can reach to n from 1
+Clibing Stairs - In how many ways we can reach to 1st to nth stair, it has 2 possible jumps - 1 step, 2 steps
 This problem is similar to Fibonacci Series Question
 Also we can solve the opp of this i.e in how many ways we can reach from n to 1 which is same
 */
