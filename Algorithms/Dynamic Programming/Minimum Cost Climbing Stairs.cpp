@@ -2,78 +2,63 @@
 using namespace std;
 
 /*
-Min Cost Climbing Stairs - In what min cost we can jump from 0th to n-1th stone, it has 2 possible jumps - 1 step, 2 steps
-Also at jump from one stair to another costs it energy diff of both stones
-This problem is similar to Climbing Stairs (just an extra parameter cost is added)
+Min Cost Climbing Stairs - In what min cost we can jump from 0th to nth stair(position after last in vector), it has 2 possible jumps - 1 step, 2 steps
+Also standing at any stair i we have to give cost of that stair cost[i] then only we can jump 1 or 2 steps
+This problem is modification of Climbing Stairs (just an extra parameter cost is added)
 Also we can solve the opp of this i.e in how many ways we can reach from n-1 to 0 which is same
 */
 
 //recursive approach - TC = O(2^n) (as we are checking 2 possible cases for all cases ) 
-int mincostrecursion(int idx,vector<int>&steps)
+int mincoststairsrecursion(vector<int>& cost, int idx) 
 {
-	if(idx==0)
-	{
-		return 0;
-	}
-	int left,right;
-	//left recursion to jump 1 step
-	left=mincostrecursion(idx-1,steps) + abs(steps[idx]-steps[idx-1]);
-	//do right recursion only if idx>1 as even if idx=1 then idx-2=-1(invalid step)
-	if(idx>1)
-	{
-		//right recursion to jump 2 steps
-		right=mincostrecursion(idx-2,steps)+abs(steps[idx]-steps[idx-2]);
-	}
-	//since we have to return min steps so min of left & right recursions will be done
-	return min(left,right);
+    if (idx<2) 
+    {
+        return cost[idx];
+    }
+    int left=mincoststairsrecursion(cost,idx-1);
+    int right=mincoststairsrecursion(cost,idx-2);
+        
+    return cost[idx]+min(left,right);
 }
 
-int mincoststairsrecursion(vector<int>&steps)
+int mincostclimbingstairsrecursion(vector<int>& cost) 
 {
-	int n=steps.size();
-	int minsteps=mincostrecursion(n-1,steps);
-	return minsteps;
+    int n=cost.size();
+    return min(mincoststairsrecursion(cost,n-1),mincoststairsrecursion(cost,n-2));
 }
 
 //Top Down Approach
 //DP with Memoization approach - TC = O(n) (as we are already precomputing some values ) 
-int mincostmemoization(int idx,vector<int>&steps,vector<int>&dp)
+int mincoststairsmemoization(vector<int>& cost, vector<int>&dp, int idx) 
 {
-	if(idx==0)
-	{
-		dp[idx]=0;
-		return 0;
+    if (idx<2) 
+    {
+    	dp[idx]=cost[idx];
+        return cost[idx];
+    }
+    if(dp[idx]!=-1)
+    {
+    	return dp[idx];
 	}
-	if(dp[idx]!=-1)
-	{
-		return dp[idx];
-	}
-	int left,right;
-	//left recursion to jump 1 step
-	left=mincostmemoization(idx-1,steps,dp) + abs(steps[idx]-steps[idx-1]);
-	//do right recursion only if idx>1 as even if idx=1 then idx-2=-1(invalid step)
-	if(idx>1)
-	{
-		//right recursion to jump 2 steps
-		right=mincostmemoization(idx-2,steps,dp)+abs(steps[idx]-steps[idx-2]);
-	}
-	dp[idx]=min(left,right);
-	//since we have to return min steps so min of left & right recursions will be done
-	return min(left,right);
+    int left=mincoststairsmemoization(cost,dp,idx-1);
+    int right=mincoststairsmemoization(cost,dp,idx-2);
+    
+    dp[idx]=cost[idx]+min(left,right);
+    
+    return cost[idx]+min(left,right);
 }
 
-int mincoststairsmemoization(vector<int>&steps)
+int mincostclimbingstairsmemoization(vector<int>& cost) 
 {
-	int n=steps.size();
+    int n=cost.size();
 	vector<int>dp(n+1,-1);
-	int minsteps=mincostmemoization(n-1,steps,dp);
-	return minsteps;
+    return min(mincoststairsmemoization(cost,dp,n-1),mincoststairsmemoization(cost,dp,n-2));
 }
 
 int main()
 {
 	//vector of costs
-	vector<int>steps={30,10,60,10,60,50};
-	cout<<"Minimum Cost By Recursion:"<<mincoststairsrecursion(steps)<<endl;
-	cout<<"Minimum Cost By Memoization:"<<mincoststairsmemoization(steps)<<endl;
+	vector<int>cost={10,15,20};
+	cout<<"Minimum Cost By Recursion:"<<mincostclimbingstairsrecursion(cost)<<endl;
+	cout<<"Minimum Cost By Memoization:"<<mincostclimbingstairsmemoization(cost)<<endl;
 }
