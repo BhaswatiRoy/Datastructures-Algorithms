@@ -33,8 +33,7 @@ int mincostclimbingstairsrecursion(vector<int>& cost)
     return min(mincoststairsrecursion(cost,n-1),mincoststairsrecursion(cost,n-2));
 }
 
-//Top Down Approach - TC = O(n) (don't give TLE)
-//DP with Memoization approach - TC = O(n) (as we are already precomputing some values ) 
+//DP with Memoization approach - TC = O(n) (don't give TLE as we are already precomputing some values ) 
 int mincoststairsmemoization(vector<int>& cost, vector<int>&dp, int idx) 
 {
     //if we reach from nth to 1st or 0th stair then it will be base case
