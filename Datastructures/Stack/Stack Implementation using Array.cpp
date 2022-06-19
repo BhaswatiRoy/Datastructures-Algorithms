@@ -41,7 +41,7 @@ int top()
 int print()
 {
 	cout<<"Stack is:";
-	for(int i=0;i<=tp;i++)
+	for(int i=tp;i>=0;i--)
 	{
 		cout<<arr[i]<<" ";
 	}
