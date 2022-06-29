@@ -1,6 +1,13 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+/*
+DFS Traversal -
+We check the adjacency list and call a recursive dfs call for all adjacent nodes of that node which are unvisited.
+The nodes which are visited during recursive dfs call must be marked as visited in the visited vector
+TC is O(V+E), SC is O(V+E)
+*/
+
 void dfspath(int node,vector<int>&visited,vector<int>adj[],vector<int>&dfs)
 {
 	dfs.push_back(node);
