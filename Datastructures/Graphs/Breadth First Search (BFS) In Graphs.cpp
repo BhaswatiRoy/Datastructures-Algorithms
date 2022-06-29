@@ -1,26 +1,37 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+/*
+BFS Traversal -
+We check adjacency list and push the node into the queue and mark it as visited in visited vector then move to it's adjacent elements.
+After that we will push the adjacent nodes of that node and finally pop that node out. We only push any node into queue if it is not visited previously.
+TC is O(V+E), SC is O(V+E)
+*/
+
 //adjancency list is vector of vectors
 void bfstraversal(int v,vector<int>adj[])
 {
 	vector<int>bfs;
-	//vector of size v+1 and all elements as 0
+	//vector of size v+1 and all elements initially as 0
 	vector<int>visited(v+1,0);
 	queue<int>q;
 	
+	//the for loop is for traversing nodes for disjoint components of graph
 	for(int i=1;i<=v;i++)
 	{
 		//if node is not visited
 		if(visited[i]==0)
 		{
+			//then push it in queue and mark it as visited
 			q.push(i);
 			visited[i]=1;
+			//traverse the adjacent nodes of that node untill all are visited
 			while(!q.empty())
 			{
 				int node=q.front();
 				q.pop();
 				bfs.push_back(node);
+				//traverse the adjacency list and check all 
 				for(auto it=adj[node].begin();it!=adj[node].end();it++)
 				{
 					if(visited[*it]==0)
