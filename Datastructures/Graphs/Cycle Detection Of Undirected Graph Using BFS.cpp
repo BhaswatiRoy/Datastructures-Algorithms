@@ -1,6 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+/*
+Cycle Detection Using BFS -
+We check if any node is not parent node but is still visited then there must be a cycle there which is why it is visited
+*/
+
 bool checkcycle(int s,int v,vector<int>adj[],vector<int>&visited)
 {
 	//create queue for storing pair of <node,parent node>
