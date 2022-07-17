@@ -38,9 +38,10 @@ bool isCyclic(int V, vector<int> adj[])
         vector<int>dfsvisited(V+1,0);
         for(int i=0;i<V;i++)
         {
-            //if there is cycle for any node then there is cycle in entire graph
+            //check if the node is unvisited then we will visit that node to do further checks
             if(visited[i]==0)
             {
+		//if there is cycle for any node then there is cycle in entire graph
                 if(dfscyclecheck(i,adj,visited,dfsvisited)==true)
                 {
                     return true;
