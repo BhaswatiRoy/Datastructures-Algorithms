@@ -7,7 +7,7 @@ vector<int> spirallytraverse(vector<vector<int>>matrix, int r, int c)
     //the 4 edge corners of the matrix are denotes by top,down,left,right
     //suppose in the given case top=1,down=13,left=13,right=16
     int top=0,down=r-1,left=0,right=c-1;
-    //dir=0(right), dir=1(down), dir=2(left), dir=3(top)
+    //dir=0(left to right), dir=1(top to down), dir=2(right to left), dir=3(down to top)
     int dir=0;
     vector<int>ans;
     //horizontal movement->left & right, vertical->top & down
