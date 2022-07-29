@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+//starting from n-1 index we reach up to n index
 int knapsacksolverecursion(int W,vector<int>&wt,vector<int>&val, int n) 
 { 
     //starting from last index base condition will be when n reaches 0 or no space left in knapsack
@@ -27,11 +28,8 @@ int knapsackrecursion(int W,vector<int>&wt,vector<int>&val, int n)
     return maxprofit;
 }
 
-//starting from n-1 index we reach up to n index
 int knapsacksolvememoization(int W,vector<int>&wt,vector<int>&val, int n,vector<vector<int>>&dp) 
-{ 
-    //starting from last index base condition will be when n reaches 0 or no space left in knapsack
-    //for smallest valid input as base case we have to return profit as 0
+{
     if(n==0 || W==0)
     {
         return dp[n][W]=0;
@@ -43,13 +41,12 @@ int knapsacksolvememoization(int W,vector<int>&wt,vector<int>&val, int n,vector<
     }
     if(wt[n-1]<=W)
     {
-        //return max value of including and not including the value of current item
-        //also update the dp vector with that value
+        //return max value of including and not including the value of current item and also update the dp vector with that value
         return dp[n][W]=max((val[n-1]+knapsacksolvememoization(W-wt[n-1],wt,val,n-1,dp)),knapsacksolvememoization(W,wt,val,n-1,dp));
     }
     else if(wt[n-1]>W)
     {
-        //if weight of current item is greater than knapsack we can't include that
+        //if weight of current item is greater than knapsack we can't include that and also update the dp vector with that value
         return dp[n][W]=knapsacksolvememoization(W,wt,val,n-1,dp);
     }
 }
