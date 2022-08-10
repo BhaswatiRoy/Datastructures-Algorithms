@@ -22,6 +22,7 @@ int knapsacksolverecursion(int W,vector<int>&wt,vector<int>&val, int n)
     }
 }
 
+//TC=O(2^n), SC=O(1)
 int knapsackrecursion(int W,vector<int>&wt,vector<int>&val, int n)
 {
     int maxprofit=knapsacksolverecursion(W,wt,val,n);
@@ -51,6 +52,7 @@ int knapsacksolvememoization(int W,vector<int>&wt,vector<int>&val, int n,vector<
     }
 }
 
+//TC=O(n), SC=(n^2)
 int knapsackmemoization(int W,vector<int>&wt,vector<int>&val, int n)
 {
     //dp vector stores the n*w value i.e value for any particular weight
