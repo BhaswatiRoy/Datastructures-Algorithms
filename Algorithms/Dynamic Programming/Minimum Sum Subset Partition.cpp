@@ -2,7 +2,7 @@
 using namespace std;
 
 /*
-Count Subsets With Given Sum - Count the total number of subsets with a given sum
+Minimum Sum Subset Partition - Find a partition such that two subsets are created with minimum sum
 */
 
 //TC=O(2^n) SC=O(1)
