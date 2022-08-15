@@ -1,6 +1,10 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+/*
+0/1 Knapsack - We have to find maximum profit we can make from given elements if we can pick the element only once
+*/
+
 //starting from n-1 index we reach up to n index
 int knapsacksolverecursion(int W,vector<int>&wt,vector<int>&val, int n) 
 { 
@@ -13,6 +17,7 @@ int knapsacksolverecursion(int W,vector<int>&wt,vector<int>&val, int n)
     if(wt[n-1]<=W)
     {
         //return max value of including and not including the value of current item
+        //pick/not pick=not processed - next iteration is n-1
         return max((val[n-1]+knapsacksolverecursion(W-wt[n-1],wt,val,n-1)),knapsacksolverecursion(W,wt,val,n-1));
     }
     else if(wt[n-1]>W)
