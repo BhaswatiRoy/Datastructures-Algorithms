@@ -13,6 +13,7 @@ int mincoinsrecursion(vector<int>&coins,int amount, int n)
 	//if we would have not taken INT_MAX then we would not got minimum on each comparison
 	if(n==0)
 	{
+		//if we used INT_MAX then the +1 in recursion call would have made it INT_MAX+1 which can't be stored in "int" and it would have given -ve value
 		return INT_MAX-1;
 	}
 	//if amount is 0 then we can form that amount by taking no coins which is minimum
@@ -22,6 +23,7 @@ int mincoinsrecursion(vector<int>&coins,int amount, int n)
 	}
 	//if coin value is less than or equal to amount then we can either pick it or not pick it
 	//previously we used to add knapsack value with pick case now instead of that we are doing +1 for counting
+	//because of this +1 we did INT_MAX-1 so that (INT_MAX-1+1) = INT_MAX
 	if(coins[n-1]<=amount)
 	{
 		return min(mincoinsrecursion(coins,amount-coins[n-1],n)+1,mincoinsrecursion(coins,amount,n-1));
