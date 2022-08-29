@@ -37,7 +37,7 @@ int longestcsmemoization(int n, int m, string s1, string s2,vector<vector<int>>&
     if(dp[n][m]!=-1)
     {
     	return dp[n][m];
-	}
+    }
     if(s1[n-1]==s2[m-1])
     {
         //store computed value in dp vector
@@ -54,9 +54,9 @@ int main()
 {
 	string s1="ABCDGH",s2="AEDFHR";
 	int n=s1.length(),m=s2.length();
-    int ans1=longestcsrecursion(n,m,s1,s2);
-    cout<<ans1<<endl;
-    vector<vector<int>>dp(n+1,vector<int>(m+1,-1));
-    int ans2=longestcsmemoization(n,m,s1,s2,dp);
-    cout<<ans2<<endl;
+        int ans1=longestcsrecursion(n,m,s1,s2);
+        cout<<ans1<<endl;
+        vector<vector<int>>dp(n+1,vector<int>(m+1,-1));
+        int ans2=longestcsmemoization(n,m,s1,s2,dp);
+        cout<<ans2<<endl;
 }
