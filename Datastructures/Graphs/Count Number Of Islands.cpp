@@ -1,4 +1,7 @@
-
+/*
+Island is a set of lands connected together surrounded by water. Thus for every connected 1's in matrix we check for all nearby 1's and count them as 1 island
+Then check for the next unvisited node which is 1 so that must be part of some new island, so everytime we get an unvisited node we can count a new island
+*/
 
 //used the visited vector to keep track of visited nodes
 void dfstraversal(int i, int j, vector<vector<char>>&grid,vector<vector<int>>&visited)
@@ -81,13 +84,16 @@ int numIslands(vector<vector<char>>& grid)
         //visited vector storing the (i,j) values that are visited
         vector<vector<int>>visited(n+1,vector<int>(m+1,0));
         int islandcount=0;
+        //traverse through the grid and find islands
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<m;j++)
             {
+                //check if any land is present which is unvisited
                 if(grid[i][j]=='1' && visited[i][j]==0)
                 {
                     islandcount++;
+                    //then call dfs/bfs call and count all the adjacent points as 1 into 1 single island
                     //better to use dfs as bfs is not more optimal
                     dfstraversal(i,j,grid,visited) / dfstraversalbetter(i,j,grid) / bfstraversal
                 }
