@@ -4,6 +4,7 @@ Now while doing BFS/DFS we visit all adjacent nodes of a particular node, so all
 Now the next unvisited node is part of a new province, so everytime we get an unvisited node we can count a new province
 */
 
+//TC = O(V), SC = O(V)
 void dfstraversal(int node, vector<int>adjls[], vector<int>&visited)
     {
         visited[node]=1;
