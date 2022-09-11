@@ -1,6 +1,11 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+/*
+We will maintain a color vector which will initially has -1 representing no color. Then we will keep on coloring nodes in the opposite color of the parent node
+Everytime in bfs call, there is a check that if the node's adjacent nodes are colored then do they have different colors than it if not then not a bipartite graph
+*/
+
 //graphs with even/no cycle is a bipartite graph
 bool bipartitebfs(int sourcenode,vector<int>adj[],vector<int>color)
 {
