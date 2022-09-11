@@ -1,8 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-/*In DFS we recursively reach to adjacent nodes and print them first then come to current node
-But in Topological Sort we store the current node 1st in stack then move to adjacent nodes
+/*
+In DFS we recursively reach to adjacent nodes and print them first then come to current node.
+But in Topological Sort we store the current node 1st in stack then move to adjacent nodes. Thus we push the node whose dfs call is completed into the stack
 */
 
 //dfs function with a bit modification
