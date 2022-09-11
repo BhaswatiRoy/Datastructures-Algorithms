@@ -35,6 +35,7 @@ bool bipartitebfs(int sourcenode,vector<int>adj[],vector<int>color)
 
 bool checkbipartite(vector<int>adj[],int v)
 {
+	//take a color vector instead of visited vector and keep coloring nodes
 	vector<int>color(v,-1);
 	//iterating for all the nodes
 	for(int i=0;i<v;i++)
