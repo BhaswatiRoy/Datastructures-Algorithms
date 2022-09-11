@@ -1,8 +1,13 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-//if we simply use logic of undirected graph then it will give wrong ans for directed graphs
-//so instead of that we use 2 vectors for marking visit
+/*
+if we simply use logic of undirected graph then it will give wrong ans for directed graphs so instead of that we use 2 vectors for marking visit.
+One is the visited vector another is dfs visited vector. The dfs visited vector keeps track if the node was visited in the current dfs recursion call or not.
+Whenever recursion call of one node ends then all the nodes under it will be marked as unvisited again in the dfs visited vector
+Now if a node is marked as 1 in both visited and dfs visited then it indicates a cycle, as it has been visited in current dfs call
+*/
+
 bool dfscyclecheck(int sourcenode, vector<int>adj[],vector<int>&visited,vector<int>&dfsvisited)
 {
        //marking that node in both vectors as 1
