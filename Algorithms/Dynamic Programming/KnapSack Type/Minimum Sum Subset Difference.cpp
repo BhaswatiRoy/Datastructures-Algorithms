@@ -2,7 +2,7 @@
 using namespace std;
 
 /*
-Minimum Sum Subset Partition - Find a partition such that two subsets are created with minimum sum
+Minimum Sum Subset Difference - Find a partition such that two subsets are created with minimum sum and return the minimum sum finally computed
 */
 
 //TC=O(2^n) SC=O(1)
