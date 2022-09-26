@@ -81,7 +81,7 @@ vector<vector<int>> threeSum(vector<int>& nums)
         return v;
 }
 
-//TC = O(n^n), SC = O(1)
+//TC = O(n^2), SC = O(1)
 vector<vector<int>> threeSum(vector<int>& nums) 
 {
         int n=nums.size();
