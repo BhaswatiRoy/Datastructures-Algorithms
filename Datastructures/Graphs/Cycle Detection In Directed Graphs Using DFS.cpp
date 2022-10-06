@@ -31,8 +31,8 @@ bool dfscyclecheck(int sourcenode, vector<int>adj[],vector<int>&visited,vector<i
             }
         }
         //if we did not find a cycle in this traversal then we will make that node as 0 in dfsvisited vector 
-	    dfsvisited[sourcenode]=0;
-	    return false;
+	dfsvisited[sourcenode]=0;
+	return false;
 }
 bool isCyclic(int V, vector<int> adj[]) 
 {
