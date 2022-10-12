@@ -1,7 +1,9 @@
 /*
 Given a matrix with a startrow,startcol and a new color we have to keep on coloring the start point and all nearby points having same initial colors with new color.
 We can only consider top,down,right,left in the adjacent points not diagonals
-We have to then return the final matrix after doing everything
+We have to then return the final matrix after doing everything.
+
+TC - O(n*m), SC - O(n*m) - n = no of rows, m = no of cols
 */
 
 void dfs(int i, int j, int newcolor, int initialcolor, vector<vector<int>>&image)
