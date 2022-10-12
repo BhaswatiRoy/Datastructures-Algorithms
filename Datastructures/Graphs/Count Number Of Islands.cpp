@@ -1,6 +1,8 @@
 /*
 Island is a set of lands connected together surrounded by water. Thus for every connected 1's in matrix we check for all nearby 1's and count them as 1 island
-Then check for the next unvisited node which is 1 so that must be part of some new island, so everytime we get an unvisited node we can count a new island
+Then check for the next unvisited node which is 1 so that must be part of some new island, so everytime we get an unvisited node we can count a new island.
+
+TC - O(n^2), SC - O(n^2)
 */
 
 //used the visited vector to keep track of visited nodes
