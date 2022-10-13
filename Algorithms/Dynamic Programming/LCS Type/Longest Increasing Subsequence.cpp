@@ -45,24 +45,24 @@ int main()
 {
 	vector<int>nums={10,9,2,5,3,7,101,18};
 	vector<int>v1=nums;
-    set<int>st;
-    //since strictly increasing is asked for so we can count length as 1 for consecutive equal elements
-    //thus storing them in set is needed to find number of unique elements
-    for(int i=0;i<nums.size();i++)
-    {
-        st.insert(nums[i]);
-    }
-    vector<int>v2;
-    //storing the set elements into another vector which will help us find strictly inrcreasing subsequence
-    for(auto it=st.begin();it!=st.end();it++)
-    {
-        v2.push_back(*it);
-    }
-    int n=v1.size(),m=v2.size();
-    int ans1=lisrecursion(n,m,v1,v2);
-    cout<<"Longest Increasing Subsequence By Recursion:"<<ans1<<endl;
-    vector<vector<int>>dp(n+1,vector<int>(m+1,-1));
-    int ans2=lismemoization(n,m,v1,v2,dp);
-    cout<<"Longest Increasing Subsequence By Memoization:"<<ans2<<endl;
+        set<int>st;
+        //since strictly increasing is asked for so we can count length as 1 for consecutive equal elements
+        //thus storing them in set is needed to find number of unique elements
+        for(int i=0;i<nums.size();i++)
+        {
+		st.insert(nums[i]);
+        }
+        vector<int>v2;
+        //storing the set elements into another vector which will help us find strictly inrcreasing subsequence
+        for(auto it=st.begin();it!=st.end();it++)
+        {
+                v2.push_back(*it);
+        }
+        int n=v1.size(),m=v2.size();
+        int ans1=lisrecursion(n,m,v1,v2);
+        cout<<"Longest Increasing Subsequence By Recursion:"<<ans1<<endl;
+        vector<vector<int>>dp(n+1,vector<int>(m+1,-1));
+        int ans2=lismemoization(n,m,v1,v2,dp);
+        cout<<"Longest Increasing Subsequence By Memoization:"<<ans2<<endl;
 }
 
