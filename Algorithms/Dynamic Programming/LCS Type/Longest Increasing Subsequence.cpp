@@ -3,6 +3,9 @@ using namespace std;
 
 /*
 Longest Increasing Subsequence - Find the length of the longest subsequence that is strictly increasing
+
+v1 = [ 0 1 0 3 2 3 ], v2 = [ 0 1 2 3 ] -> after storing in set
+Now LCS of both will give us longest increasing subsequence - 0 1 2 3 which has length = 4
 */
 
 int lisrecursion(int n,int m,vector<int>&v1,vector<int>&v2)
