@@ -43,5 +43,6 @@ int main()
 	print(vp);
 	//cmp used to sort in descending order
 	sort(vp.begin(),vp.end(),cmp);
+	//sort(vp.begin(),vp.end(),greater<pair<int,int>>()) -> alternative way
 	print(vp);
 }
