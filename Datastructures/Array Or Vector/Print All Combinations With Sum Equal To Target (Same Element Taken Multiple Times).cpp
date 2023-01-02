@@ -2,10 +2,11 @@
 using namespace std;
 
 /*  
-Combination Sum 1 ->
+Combination Sum 2 ->
 We have to print all possible combinations whose sum is target
 Also here we can consider one element multiple times
-TC of brute force approach is (2^n)*k*logn {extra logn due to insertion operation in set}
+TC of brute force approach is (2^n)*k*logn {extra logn due to insertion operation in set} 
+It is just Combination Sum 1 with idx+1 in picking also since we don't stay at same index even while picking
 TC of optimized approach is (2^n)*k
 {k in both cases is due to pushing one subsquence in final vector}
 */
