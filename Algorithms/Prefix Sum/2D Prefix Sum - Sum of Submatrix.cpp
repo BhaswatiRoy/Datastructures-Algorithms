@@ -25,12 +25,8 @@ int main()
     		pf[i][j]=pf[i-1][j]+pf[i][j-1]+v[i][j]-pf[i-1][j-1];
 		}
 	}
-	for(int p=1;p<=n;p++)
-	{
-		for(int q=1;q<=n;q++)
-		{
-			cout<<pf[p][q]<<" "; 
-		}
-		cout<<endl;
-	}
+	//priting sum from (x1,y1) to (x2,y2) index
+	int x1,x2,y1,y2;
+	cin>>x1>>y1>>x2>>y2;
+	cout<<pf[x2][y2]-pf[x1-1][y2]-pf[x2][y1-1]+pf[x1-1][y1-1]<<endl;
 }
