@@ -13,15 +13,11 @@ int partitionasec(vector<int>&v,int s,int e)
 		//any element smaller than pivot will be swapped with the left element and the index is marked
 		if(v[i]<pivot)
 		{
-			int temp=v[i];
-			v[i]=v[pindex];
-			v[pindex]=temp;
+			swap(v[i],v[pindex]);
 			pindex++;
 		}
 	}
-	int temp=v[e];
-	v[e]=v[pindex];
-	v[pindex]=temp;
+	swap(v[pindex],v[e]);
 	//finally pivot comes to the proper position of the sorted vector
 	//in end we need to return the pivot index position
 	return pindex;
@@ -38,15 +34,11 @@ int partitiondesc(vector<int>&v,int s,int e)
 		//any element greater than pivot will be swapped with the left element and the index is marked
 		if(v[i]>pivot)
 		{
-			int temp=v[i];
-			v[i]=v[pindex];
-			v[pindex]=temp;
+			swap(v[i],v[pindex]);
 			pindex++;
 		}
 	}
-	int temp=v[e];
-	v[e]=v[pindex];
-	v[pindex]=temp;
+	swap(v[pindex],v[e]);
 	//finally pivot comes to the proper position of the sorted vector
 	//in end we need to return the pivot index position
 	return pindex;
