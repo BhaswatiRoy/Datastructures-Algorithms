@@ -2,7 +2,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void selectionsortasec(vector<int>&v)
+void insertionsortasec(vector<int>&v)
 {
 	int key,j=0;
 	for(int i=0;i<v.size();i++)
@@ -21,7 +21,7 @@ void selectionsortasec(vector<int>&v)
 	}
 }
 
-void selectionsortdesc(vector<int>&v)
+void insertionsortdesc(vector<int>&v)
 {
 	int key,j=0;
 	for(int i=0;i<v.size();i++)
