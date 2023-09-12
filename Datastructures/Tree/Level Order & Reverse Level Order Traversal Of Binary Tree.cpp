@@ -1,4 +1,11 @@
-//storing level order traversal in vector<vector<int>>
+/*
+1. vector of vector for BT
+2. vector for BT
+3. reverse level order for BT
+4. level order for N-ary T
+*/
+
+//storing level order traversal in vector<vector<int>> for Binary Tree
 vector<vector<int>> levelOrder(TreeNode* root) 
     {
         vector<vector<int>>ans;
@@ -32,7 +39,7 @@ vector<vector<int>> levelOrder(TreeNode* root)
     }
 
 
-//storing level order traversal in vector<int>
+//storing level order traversal in vector<int> for Binary Tree
 vector<int> levelorder(node *root)
 {
 	if(root==NULL)
@@ -66,7 +73,7 @@ vector<int> levelorder(node *root)
 	return level;
 }
 
-//reverse level order traversal
+//reverse level order traversal for Binary Tree
 vector<int> reverselevelorder(node *root)
 {
 	if(root==NULL)
@@ -102,3 +109,41 @@ vector<int> reverselevelorder(node *root)
 	return revlevel;
 }
 
+//level order traversal of N-ary Tree
+vector<vector<int>> levelOrder(Node* root) 
+    {
+        if(root==NULL)
+        {
+            return {};
+        }
+        //vector to store final level wise nodes
+        vector<vector<int>>levels;
+        queue<Node*>q;
+        q.push(root);
+        //iterate till queue is empty
+        while(!q.empty())
+        {
+            vector<int>onelevel;
+            //find size of queue to find no of nodes in 1 level
+            int size=q.size();
+            //iterate and push all nodes in one level
+            for(int i=0;i<size;i++)
+            {
+                Node* temp=q.front();
+                q.pop();
+                onelevel.push_back(temp->val);
+                vector<Node*>child=temp->children;
+                //also store next level nodes for further iterations
+                for(int i=0;i<child.size();i++)
+                {
+                    if(child[i]!=NULL)
+                    {
+                        q.push(child[i]);
+                    }
+                }
+            }
+            //push vector storing nodes of one level in final vector
+            levels.push_back(onelevel);
+        }
+        return levels;
+    }
