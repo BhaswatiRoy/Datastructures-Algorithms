@@ -9,7 +9,7 @@ We check if any node is not parent node but is still visited then there must be 
 bool checkcycle(int s,int v,vector<int>adj[],vector<int>&visited)
 {
 	//create queue for storing pair of <node,parent node>
-	//storing parent node will help us verify if 
+	//storing parent node will help us verify if any visited node is parent or not
 	queue<pair<int,int>>q;
 	//visited node is marked as 1
 	visited[s]=1;
