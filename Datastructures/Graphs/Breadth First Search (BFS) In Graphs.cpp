@@ -32,14 +32,25 @@ void bfstraversal(int v,vector<int>adj[])
 				q.pop();
 				bfs.push_back(node);
 				//traverse the adjacency list and check all 
-				for(auto it=adj[node].begin();it!=adj[node].end();it++)
-				{
-					if(visited[*it]==0)
-					{
-						q.push(*it);
-						visited[*it]=1;
-					}
-				}
+				for(int i=0;i<adj[node].size();i++)
+            			{
+                			int adjnode=adj[node][i];
+                			if(visited[adjnode]==0)
+               		 		{
+                    				q.push(adjnode);
+                    				visited[adjnode]=1;
+                			}
+                    
+            			}
+				//another way - old way which worked always
+				// for(auto it=adj[node].begin();it!=adj[node].end();it++)
+				// {
+				// 	if(visited[*it]==0)
+				// 	{
+				// 		q.push(*it);
+				// 		visited[*it]=1;
+				// 	}
+				// }
 			}
 		}
 	}
