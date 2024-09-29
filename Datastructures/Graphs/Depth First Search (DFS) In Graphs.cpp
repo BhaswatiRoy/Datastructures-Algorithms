@@ -8,6 +8,36 @@ The nodes which are visited during recursive dfs call must be marked as visited 
 TC is O(V+E), SC is O(V+E)
 */
 
+//connected components
+void dfsrecursion(int node, vector<int>adj[], vector<int>&visited, vector<int>&dfs)
+{
+        visited[node]=1;
+        dfs.push_back(node);
+        for(int i=0;i<adj[node].size();i++)
+        {
+            int adjnode=adj[node][i];
+            if(visited[adjnode]==0)
+            {
+                dfsrecursion(adj[node][i],adj,visited,dfs);
+            }
+        }
+}
+vector<int> dfsOfGraph(int V, vector<int> adj[]) 
+{
+        vector<int>visited(V,0);
+        visited[0]=1;
+        vector<int>dfs;
+        for(int i=0;i<V;i++)
+        {
+            if(visited[i]==0)
+            {
+                dfsrecursion(i,adj,visited,dfs);
+            }
+        }
+        return dfs;
+}
+
+//non connected components
 void dfspath(int node,vector<int>&visited,vector<int>adj[],vector<int>&dfs)
 {
 	dfs.push_back(node);
