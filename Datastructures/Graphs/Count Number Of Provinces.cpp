@@ -4,8 +4,7 @@ Now while doing BFS/DFS we visit all adjacent nodes of a particular node, so all
 Now the next unvisited node is part of a new province, so everytime we get an unvisited node we can count a new province
 */
 
-//BFS - GFG Version 
-[Problem] (https://www.geeksforgeeks.org/problems/number-of-provinces/1)
+//BFS - GFG Version - https://www.geeksforgeeks.org/problems/number-of-provinces/1
 void bfs(int node, vector<int>adjlist[], vector<int>&visited, queue<int>&q)
 {
         visited[node]=1;
