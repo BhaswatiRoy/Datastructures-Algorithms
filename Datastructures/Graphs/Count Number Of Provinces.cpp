@@ -5,7 +5,7 @@ Now the next unvisited node is part of a new province, so everytime we get an un
 */
 
 //BFS - GFG Version 
-[Problem](https://www.geeksforgeeks.org/problems/number-of-provinces/1)
+[Problem] (https://www.geeksforgeeks.org/problems/number-of-provinces/1)
 void bfs(int node, vector<int>adjlist[], vector<int>&visited, queue<int>&q)
 {
         visited[node]=1;
