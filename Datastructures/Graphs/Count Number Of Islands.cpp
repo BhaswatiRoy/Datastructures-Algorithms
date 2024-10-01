@@ -47,59 +47,49 @@ void dfstraversalbetter(int i, int j, vector<vector<char>>&grid)
         dfstraversalbetter(i-1,j,grid);
 }
 
-void bfstraversal(int row, int col, vector<vector<char>>& grid, vector<vector<int>>&visited)
-{
-        visited[row][col]=1;
+//bfs traversal with diagonals not considered as neighbors - LC problem - https://leetcode.com/problems/number-of-islands/description/
+void bfstraversal(int i, int j, int n, int m, vector<vector<char>>&grid, vector<vector<int>>&visited)
+    {
         queue<pair<int,int>>q;
-        q.push({row,col});
-        int n=grid.size();
-        int m=grid[0].size();
+        q.push({i,j});
+        visited[i][j]=1;
         while(!q.empty())
         {
-            //finding row,col value of current node from queue
             int row=q.front().first;
             int col=q.front().second;
             q.pop();
-            //traverse the neighbours of the given point (row,col) which is -1 to +1 of that point
-            for(int delrow=-1;delrow<=1;delrow++)
+            //diagonal nodes not allowed so we cant use nested loops from -1 to 1 each
+            //hence store in delrows and delcols so that we get 4 combinations for top,bottom,left,right
+            vector<int>delrows={-1,0,1,0};
+            vector<int>delcols={0,1,0,-1};
+            for(int it=0;it<4;it++)
             {
-                for(int delcol=-1;delcol<=1;delcol++)
+                int neighborrow=row+delrows[it];
+                int neighborcol=col+delcols[it];
+                if((neighborrow>=0 && neighborrow<n) && (neighborcol>=0 && neighborcol<m) && grid[neighborrow][neighborcol]=='1' && !visited[neighborrow][neighborcol])
                 {
-                    //calculating new row,col value using delrow,delcol from current node
-                    int newrow=row+delrow;
-                    int newcol=col+delcol;
-                    //checking valid (row,col) points and they should be land + non visited as well
-                    if((newrow>=0 && newrow<n) && (newcol>=0 && newcol<m) && grid[newrow][newcol]=='1' && !visited[newrow][newcol])
-                    {
-                        visited[newrow][newcol]=1;
-                        q.push({newrow,newcol});
-                    }
+                    q.push({neighborrow,neighborcol});
+                    visited[neighborrow][neighborcol]=1;
                 }
             }
         }
-}
-
-int numIslands(vector<vector<char>>& grid) 
-{
+    }
+    int numIslands(vector<vector<char>>& grid) 
+    {
         int n=grid.size();
         int m=grid[0].size();
-        //visited vector storing the (i,j) values that are visited
-        vector<vector<int>>visited(n+1,vector<int>(m+1,0));
-        int islandcount=0;
-        //traverse through the grid and find islands
+        int count=0;
+        vector<vector<int>>visited(n,vector<int>(m,0));
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<m;j++)
             {
-                //check if any land is present which is unvisited
-                if(grid[i][j]=='1' && visited[i][j]==0)
+                if(visited[i][j]==0 && grid[i][j]=='1')
                 {
-                    islandcount++;
-                    //then call dfs/bfs call and count all the adjacent points as 1 into 1 single island
-                    //better to use dfs as bfs is not more optimal
-                    dfstraversal(i,j,grid,visited) / dfstraversalbetter(i,j,grid) / bfstraversal
+                    count++;
+                    bfstraversal(i,j,n,m,grid,visited);
                 }
             }
         }
-        return islandcount;
-}
+        return count;
+    }
