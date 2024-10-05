@@ -1,46 +1,41 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-bool checkcycle(int node,int parentnode,vector<int>adj[],vector<int>&visited)
+bool checkcycle(int node, int parent, vector<int>adj[],vector<int>&visited)
 {
-	//mark the node as visited
-	visited[node]=1;
-	for(auto it=adj[node].begin();it!=adj[node].end();it++)
-	{
-		//check if the node is unvisited then we will recursively call the function to check for adjacent nodes
-		if(visited[*it]==0)
-		{
-			//if any portion of recursive call of the function returns true then cycle is present 
-			if(checkcycle(*it,node,adj,visited)==true)
-			{
-				return true;
-			}
-		}
-		//if the next adjacent node is already visited and it is not parent node then cycle is present
-		else if(visited[*it]==1 && *it!=parentnode)
-		{
-			return true;
-		}
-	}
-	return false;
+        visited[node]=1;
+        for(int j=0;j<adj[node].size();j++)
+        {
+            int neighbor=adj[node][j];
+            if(visited[neighbor]==0)
+            {
+                if(checkcycle(neighbor,node,adj,visited)==true)
+                {
+                    return true;
+                }
+            }
+            else if(neighbor!=parent && visited[neighbor]==1)
+            {
+                return true;
+            }
+        }
+        return false;
 }
 
-//function to check if any node faces a cycle i.e a visited node!=parent node then there is cycle in the graph
-bool iscycle(int v,vector<int>adj[])
+bool isCycle(int V, vector<int> adj[]) 
 {
-	vector<int>visited(v+1,0);
-	for(int i=1;i<=v;i++)
-	{
-		//check if the node is unvisited then we will visit that node to do further checks
-		if(visited[i]==0)
-		{
-			if(checkcycle(i,-1,adj,visited)==true)
-			{
-				return true;
-			}
-		}
-	}
-	return false;
+        vector<int>visited(V,0);
+        for(int i=0;i<V;i++)
+        {
+            if(visited[i]==0)
+            {
+                if(checkcycle(i,-1,adj,visited)==true)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
 }
 
 int main()
