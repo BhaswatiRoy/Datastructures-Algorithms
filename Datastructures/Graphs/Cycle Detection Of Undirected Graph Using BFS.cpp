@@ -6,55 +6,48 @@ Cycle Detection Using BFS -
 We check if any node is not parent node but is still visited then there must be a cycle there which is why it is visited
 */
 
-bool checkcycle(int s,int v,vector<int>adj[],vector<int>&visited)
-{
-	//create queue for storing pair of <node,parent node>
-	//storing parent node will help us verify if any visited node is parent or not
-	queue<pair<int,int>>q;
-	//visited node is marked as 1
-	visited[s]=1;
-	//initially parent node of the visited node is none so is marked as -1
-	q.push({s,-1});
-	
-	while(!q.empty())
-	{
-		//store value of current & parent node
-		int node=q.front().first;
-		int parentnode=q.front().second;
-		q.pop();
-		//traverse &check for all the adjacent nodes of the current node
-		for(auto it=adj[node].begin();it!=adj[node].end();it++)
-		{
-			if(visited[*it]==0)
-			{
-				visited[*it]=1;
-				q.push({*it,node});
-			}
-			else if(visited[*it]==1 && parentnode!=*it)
-			{
-				return true;
-			}
-		}
-	}
-	return false;
-}
-
-//function to check if any node faces a cycle i.e a visited node!=parent node then there is cycle in the graph
-bool iscycle(int v,vector<int>adj[])
-{
-	vector<int>visited(v+1,0);
-	for(int i=1;i<=v;i++)
-	{
-		if(visited[i]==0)
-		{
-			if(checkcycle(i,v,adj,visited)==true)
-			{
-				return true;
-			}
-		}
-	}
-	return false;
-}
+bool checkcycle(int start, vector<int>&visited, vector<int>adj[])
+    {
+        visited[start]=1;
+        queue<pair<int,int>>q;
+        q.push({start,-1});
+        while(!q.empty())
+        {
+            int node=q.front().first;
+            int parent=q.front().second;
+            q.pop();
+            for(int j=0;j<adj[node].size();j++)
+            {
+                int neighbor=adj[node][j];
+                if(visited[neighbor]==0)
+                {
+                    q.push({neighbor,node});
+                    visited[neighbor]=1;
+                }
+                else if(neighbor!=parent)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    bool isCycle(int V, vector<int> adj[]) 
+    {
+        vector<int>visited(V,0);
+        for(int i=0;i<V;i++)
+        {
+            if(visited[i]==0)
+            {
+                if(checkcycle(i,visited,adj)==true)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+};
 
 int main()
 {
