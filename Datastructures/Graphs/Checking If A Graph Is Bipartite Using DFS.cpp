@@ -7,53 +7,56 @@ Everytime in bfs call, there is a check that if the node's adjacent nodes are co
 */
 
 //graphs with even/no cycle is a bipartite graph
-bool bipartitedfs(int sourcenode,vector<int>adj[],vector<int>color)
+bool checkbipartite(int node, int lastcolor, vector<int>adj[], vector<int>&color)
 {
-	//source node is starting node of bfs
-	if(color[sourcenode]==-1)
-	{
-		//color that node with 1st color i.e 0
-		color[sourcenode]=0;
-	}
-	for(auto it=adj[sourcenode].begin();it!=adj[sourcenode].end();it++)
-	{
-		//if the node is unvisited then it will be marked as -1
-		if(color[*it]==-1)
-		{
-			//color that next node with exact opp color of the current node
-			//if node=1 then adj node=1-0=1/ adj node=1-1=0
-			color[*it]=1-color[sourcenode];
-			//if any portion of graph traversal returns a false then the graph is not bipartite
-			if(bipartitedfs(*it,adj,color)==false)
-			{
-				return false;
-			}
-		}
-		//if color of adjacent node & current node is same then they the graph is not bipartite
-		else if(color[*it]!=-1 && color[*it]==color[sourcenode])
-		{
-			return false;
-		}
-	}
-	return true;
+        color[node]=lastcolor;
+        for(int j=0;j<adj[node].size();j++)
+        {
+            int adjnode=adj[node][j];
+            if(color[adjnode]==-1)
+            {
+                //adjnode color will be opp to node color
+                int currcolor;
+                if(lastcolor==0)
+                {
+                    currcolor=1;
+                }
+                else
+                {
+                    currcolor=0;
+                }
+                //check dfs for adj node as well
+                if(checkbipartite(adjnode,currcolor,adj,color)==false)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if(color[adjnode]==color[node])
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
 }
 
-bool checkbipartite(vector<int>adj[],int v)
+bool isBipartite(int V, vector<int>adj[])
 {
-	vector<int>color(v,-1);
-	//iterating for all the nodes
-	for(int i=0;i<v;i++)
-	{
-		if(color[i]==-1)
-		{
-		    //if any of the portion of the graph returns false then whole tree is not bipartite
-			if(bipartitedfs(i,adj,color)==false)
-			{
-				return false;
-			}
-		}
-	}
-	return true;
+	    vector<int>color(V,-1);
+	    for(int i=0;i<V;i++)
+	    {
+	        //check only for noncolored start points in disconnected components
+	        if(color[i]==-1)
+	        {
+	            if(checkbipartite(i,0,adj,color)==false)
+	            {
+	                return false;
+	            }
+	        }
+	    }
+	    return true;
 }
 
 int main()
