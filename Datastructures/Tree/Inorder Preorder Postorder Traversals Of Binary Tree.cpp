@@ -37,19 +37,22 @@ node *create()
 }
 
 //inorder traversal
-void inorder(node *head)
+void inorder(TreeNode *root, vector<int>&inordertraversal)
 {
-	if(head==NULL)
-	{
-		return;
-	}
-	else
-	{
-		//left root right
-		inorder(head->left);
-		cout<<head->data<<" ";
-		inorder(head->right);
-	}
+        if(root==NULL)
+        {
+            return;
+        }
+        inorder(root->left,inordertraversal);
+        inordertraversal.push_back(root->val);
+        inorder(root->right,inordertraversal);
+}
+
+vector<int> inorderTraversal(TreeNode* root) 
+{
+        vector<int>inordertraversal;
+        inorder(root,inordertraversal);
+        return inordertraversal;
 }
 
 //preorder traversal
@@ -59,7 +62,7 @@ void preorder(TreeNode *root, vector<int>&preordertraversal)
         {
             return;
         }
-        preordertraversal.push_back(root->data);
+        preordertraversal.push_back(root->val);
         preorder(root->left,preordertraversal);
         preorder(root->right,preordertraversal);
 }
