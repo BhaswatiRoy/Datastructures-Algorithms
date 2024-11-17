@@ -7,36 +7,36 @@
 
 //storing level order traversal in vector<vector<int>> for Binary Tree
 vector<vector<int>> levelOrder(TreeNode* root) 
-    {
-        vector<vector<int>>ans;
+{
         if(root==NULL)
         {
             return {};
         }
+        vector<vector<int>>levelordertraversal;
         queue<TreeNode*>q;
         q.push(root);
         while(!q.empty())
         {
-            vector<int>v;
+            vector<int>onelevel;
             int sz=q.size();
             for(int i=0;i<sz;i++)
             {
-                TreeNode* temp=q.front();
+                TreeNode *node=q.front();
                 q.pop();
-                v.push_back(temp->val);
-                if(temp->left!=NULL)
+                onelevel.push_back(node->val);
+                if(node->left!=NULL)
                 {
-                    q.push(temp->left);
+                    q.push(node->left);
                 }
-                if(temp->right!=NULL)
+                if(node->right!=NULL)
                 {
-                    q.push(temp->right);
+                    q.push(node->right);
                 }
             }
-            ans.push_back(v);
+            levelordertraversal.push_back(onelevel);
         }
-        return ans;
-    }
+        return levelordertraversal;
+}
 
 
 //storing level order traversal in vector<int> for Binary Tree
