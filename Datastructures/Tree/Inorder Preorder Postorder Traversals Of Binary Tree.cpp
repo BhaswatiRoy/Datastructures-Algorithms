@@ -44,7 +44,7 @@ void inorder(TreeNode *root, vector<int>&inordertraversal)
             return;
         }
         inorder(root->left,inordertraversal);
-        inordertraversal.push_back(root->val);
+        inordertraversal.push_back(root->data);
         inorder(root->right,inordertraversal);
 }
 
@@ -62,7 +62,7 @@ void preorder(TreeNode *root, vector<int>&preordertraversal)
         {
             return;
         }
-        preordertraversal.push_back(root->val);
+        preordertraversal.push_back(root->data);
         preorder(root->left,preordertraversal);
         preorder(root->right,preordertraversal);
 }
@@ -82,7 +82,7 @@ void postorder(TreeNode *root, vector<int>&postordertraversal)
         }
         postorder(root->left,postordertraversal);
         postorder(root->right,postordertraversal);
-        postordertraversal.push_back(root->val);
+        postordertraversal.push_back(root->data);
 }
 vector<int> postorderTraversal(TreeNode* root) 
 {
