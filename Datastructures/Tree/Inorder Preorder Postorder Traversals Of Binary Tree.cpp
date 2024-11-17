@@ -70,19 +70,22 @@ vector<int> preorderTraversal(TreeNode* root)
         return preordertraversal;
 }
 
-void postorder(node *head)
+//postorder traversal
+void postorder(TreeNode *root, vector<int>&postordertraversal)
 {
-	if(head==NULL)
-	{
-		return;
-	}
-	//left right root
-	else
-	{
-		postorder(head->left);
-		postorder(head->right);
-		cout<<head->data<<" ";
-	}
+        if(root==NULL)
+        {
+            return;
+        }
+        postorder(root->left,postordertraversal);
+        postorder(root->right,postordertraversal);
+        postordertraversal.push_back(root->val);
+}
+vector<int> postorderTraversal(TreeNode* root) 
+{
+        vector<int>postordertraversal;
+        postorder(root,postordertraversal);
+        return postordertraversal;
 }
 
 int main()
