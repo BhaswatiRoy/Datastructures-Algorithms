@@ -2,8 +2,15 @@
 using namespace std;
 
 /*
-In DFS we recursively reach to adjacent nodes and print them first then come to current node.
-But in Topological Sort we store the current node 1st in stack then move to adjacent nodes. Thus we push the node whose dfs call is completed into the stack
+Topo sort: the linear ordering of vertices such that for u->v, u appears before v in the ordering
+Topo sort is only valid for Directed Acyclic Graph (DAG) 
+Because for undirected graphs 1 - 2, 1 has to come before 2 & 2 has to go before 1 which is practically impossible
+For cycles also every node has to appear before its adjacent which is practically impossible
+
+When we start with a node, we reach its adjacent nodes until we reach a point where it has no adjacent
+We can only go to a node if it's not visited earlier
+As we finish the call for a node then we push it into a stack
+Then finally empty the stack and store elements to an array in LIFO format to get topo sort
 */
 
 //dfs function with a bit modification
@@ -18,6 +25,7 @@ void findtopologicalsort(int sourcenode,vector<int>&visited,stack<int>&st,vector
 			findtopologicalsort(*it,visited,st,adj);
 		}
 	}
+	//as soon as the call finishes, push it to stack
 	//only difference with topological sort & normal dfs
 	st.push(sourcenode);
 }
