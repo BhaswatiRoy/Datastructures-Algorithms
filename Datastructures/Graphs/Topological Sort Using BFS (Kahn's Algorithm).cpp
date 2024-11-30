@@ -1,83 +1,57 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-/*In BFS we don't need an indegree vector 
-But in Topological Sort by BFS we need to maintain an indegree vector.
-We will check nodes and reduce the indegree of adjacent nodes by 1 to finally make as 0
-Also everytime we get a node with indegree of 0 we will push it to queue and later print accordingly
+/*In Topo sort by DFS we don't need an in-degree vector 
+But in Topological Sort by BFS we need to maintain an in-degree vector.
+Push all the nodes with in-degree = 0 in the queue 
+there is a guarantee of indegree = 0 nodes in a DAG
+Now take them out of the queue one by one and reduce the in-degree of the adjacent nodes of them
+Do this till the in-degree of those adjacent nodes becomes 0 and thus push them to the queue as well
 */
 
-//bfs function with a bit modification i.e using an indegree vector
-void topologicalsort(int v,vector<int>adj[])
+void toposort(int V, vector<vector<int>>&adj, vector<int>&indegree, vector<int>&kahns)
 {
-	//define a queue to store the topological sort format of nodes i.e nodes which has indegree marked as 0
-	queue<int>q;
-	//define the indegree vector
-	vector<int>indegree(v,0);
-	for(int i=0;i<v;i++)
-	{
-		//for every adjacent nodes of any node there is an indegree of that node that's why edge exists 
-		for(auto it=adj[i].begin();it!=adj[i].end();it++)
-		{
-			//storing indegree of each node in the indegree vector
-			indegree[*it]++;
-		}
-	}
-	//now adding all nodes to the queue which has indegree as 0 
-	for(int i=1;i<= v;i++)
-	{
-		if(indegree[i]==0)
-		{
-			q.push(i);
-		}
-	}
-	//define the topological sort vector to store the format
-	vector<int>topo;
-	while(!q.empty())
-	{
-		int sourcenode=q.front();
-		q.pop();
-		//push that node to queue
-		topo.push_back(sourcenode);
-		//the iterate through all the adjacent nodes of that node and indegree of those adjacent nodes are reduced by 1
-		for(auto it=adj[sourcenode].begin();it!=adj[sourcenode].end();it++)
-		{
-			indegree[*it]--;
-			if(indegree[*it]==0)
-			{
-				q.push(*it);
-			}
-		}
-	}
-	//finally print the elements of the vector 
-	for(int i=0;i<topo.size();i++)
-	{
-		cout<<topo[i]<<" ";
-	}
-	cout<<endl;
+        queue<int>q;
+        //push the nodes with in-degree 0 into the queue
+        for(int k=0;k<V;k++)
+        {
+            if(indegree[k]==0)
+            {
+                q.push(k);
+            }
+        }
+        while(!q.empty())
+        {
+            int node=q.front();
+            q.pop();
+            kahns.push_back(node);
+            for(int l=0;l<adj[node].size();l++)
+            {
+                int adjnode=adj[node][l];
+		//reduce the indegree of the adjacent nodes
+		//keep on doing till we get adjacent nodes with 0 indegree to push in queue
+                indegree[adjnode]--;
+                if(indegree[adjnode]==0)
+                {
+                    q.push(adjnode);
+                }
+            }
+        }
 }
 
-int main()
+vector<int> topologicalSort(vector<vector<int>>& adj) 
 {
-	//v=no of vertices, e=no of edges
-	int v,e;
-	cout<<"Enter number of vertices:";
-	cin>>v;
-	cout<<"Enter number of edges:";
-	cin>>e;
-	
-	vector<int>adj[v+1];
-	
-	//take edges as input
-	for(int i=1;i<=e;i++)
-	{
-		int v1,v2;
-		cout<<"Enter The Vertices Between Which Edge Exist:";
-		cin>>v1>>v2;
-		
-		//for directed graph edge will exist between v1 & v2 but not v1 & v2
-		adj[v1].push_back(v2);
-	}
-	topologicalsort(v,adj);
+        int V=adj.size();
+        vector<int>indegree(V,0);
+        vector<int>kahns;
+        for(int i=0;i<V;i++)
+        {
+            vector<int>adjnodes=adj[i];
+            for(int j=0;j<adjnodes.size();j++)
+            {
+                indegree[adjnodes[j]]++;
+            }
+        }
+        toposort(V,adj,indegree,kahns);
+        return kahns;
 }
-
