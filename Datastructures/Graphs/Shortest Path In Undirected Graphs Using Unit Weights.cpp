@@ -1,67 +1,63 @@
-#include<bits/stdc++.h>
-using namespace std;
+/*
+1. Create a "distance" vector for all N nodes and set them to INT_MAX
+2. Store {node, distance from start} pairs in the queue
+3. {start,0} will be pushed first as the distance from start to itself is always 0
+4. Then we will check adj elements from the queue and do +1 with each 
+5. Then we will compare with the "distance" vector if we get a better distance
+6. If we get a better distance, store that in the "distance" vector and push the {node, distance} to the queue
 
-//simple bfs with a bit modification by using a separate extra vector which is distance vector
-void shortestpath(int v,vector<int>adj[],int sourcenode)
+TC: O(N + M) -> each edge & node will be processed once
+SC: O(N + M) -> store the graph in adjacency list
+*/
+
+
+void shortestdist(int N, int src, vector<vector<int>>&adj, vector<int>&distance)
 {
-	//define all nodes of the distance vector as the maximum value
-	vector<int>distance(v+1,INT_MAX);
-	queue<int>q;
-	
-	//distance of sourcenode from sourcenode is always 0
-	//distance node at 0 index is marked as 0 as our graph starts from node value 1 so we might get garbage value
-	distance[sourcenode]=distance[0]=0;
-	q.push(sourcenode);
-	while(!q.empty())
-	{
-		int node=q.front();
-		q.pop();
-		
-		//traverse for all adjacent nodes
-		for(auto it=adj[node].begin();it!=adj[node].end();it++)
-		{
-			//got shorter path to reach to that node from source node
-			//suppose node 2 has adjacent node 3 so node=2 and *it=3
-			//also +1 is for going to the next adj node from current node as all weights are 1
-			if(distance[node]+1<distance[*it])
-			{
-				//then replace that value in distance vector
-				distance[*it]=distance[node]+1;
-				q.push(*it);
-			}
-		}
-	}
-	for(int i=1;i<=v;i++)
-	{
-		cout<<distance[i]<<" ";
-	}
+        //queue to store {node, distance of node from source}
+        queue<pair<int,int>>q;
+        //distance from src to itself is 0
+        q.push({src,0});
+        distance[src]=0;
+        while(!q.empty())
+        {
+            pair<int,int>p=q.front();
+            q.pop();
+            int node=p.first;
+            int dist=p.second;
+            vector<int>adjnodes=adj[node];
+            for(int j=0;j<adjnodes.size();j++)
+            {
+                int adjnode=adjnodes[j];
+                //+1 distance to travel to the adjacent node
+                //if we get a distance that is shorter than the last one then add it
+                //for smaller distances we add to both the distance vector & queue
+                if(dist+1 < distance[adjnode])
+                {
+                    distance[adjnode]=dist+1;
+                    q.push({adjnode,dist+1});
+                }
+            }
+        }
 }
 
-int main()
+vector<int> shortestPath(vector<vector<int>>& edges, int N,int M, int src)
 {
-	//v=no of vertices, e=no of edges
-	int v,e;
-	cout<<"Enter number of vertices:";
-	cin>>v;
-	cout<<"Enter number of edges:";
-	cin>>e;
-	
-	vector<int>adj[v+1];
-	
-	//take edges as input
-	for(int i=1;i<=e;i++)
-	{
-		int v1,v2;
-		cout<<"Enter The Vertices Between Which Edge Exist:";
-		cin>>v1>>v2;
-		
-		//for directed graph edge will exist between v1 & v2 but not v1 & v2
-		adj[v1].push_back(v2);
-		adj[v2].push_back(v1);
-	}
-	int sourcenode;
-	cout<<"Enter the source node:";
-	cin>>sourcenode;
-	shortestpath(v,adj,sourcenode);
+        vector<vector<int>>adj(N);
+        //there are M edges so store them in an adjacency list
+        for(int i=0;i<M;i++)
+        {
+            adj[edges[i][0]].push_back(edges[i][1]);
+            adj[edges[i][1]].push_back(edges[i][0]);
+        }
+        vector<int>distance(N,INT_MAX);
+        shortestdist(N,src,adj,distance);
+        //if any node is unreachable then it should be made -1
+        for(int j=0;j<N;j++)
+        {
+            if(distance[j]==INT_MAX)
+            {
+                distance[j]=-1;
+            }
+        }
+        return distance;
 }
-
