@@ -1,15 +1,19 @@
 /*
 Dijkstra's algorithm does not work on graphs with negative edge weights
-on every traversal distance reduces due to -ve weights 
+on every traversal, distance reduces due to -ve weights 
 & min heap priority queue keeps on storing them and this is an infinite loop
+
+If we get a distance of 8 for node 5, and previously there was a distance of 10 for node 5
+Using set means we can erase that (10, 5) and only store (8,5) but for priority queue we cant do it
+This is why set is a more optimal approach
 
 Approach 1: Using Priority Queue
 1. Take a min heap priority queue to store {distance, node}
 2. Push the source & distance 0 to queue
 3. Create a "distance" vector with all values set to INT_MAX
-4. Iterate through the queue like BFS and find distance by adding them up
-5. If we find, we can reach a node with lesser distance than INT_MAX 
-6. then e store it in the queue, and also update the value in the "distance" vector
+4. Iterate through the queue like BFS and find the distance by adding them up
+5. If we find, we can reach a node with a lesser distance than INT_MAX 
+6. then store it in the queue, and also update the value in the "distance" vector
 TC: ElogV -> E = no of edges, V = no of vertices
 SC: 
 */
