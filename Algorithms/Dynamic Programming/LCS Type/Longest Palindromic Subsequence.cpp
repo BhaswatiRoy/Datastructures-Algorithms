@@ -7,48 +7,45 @@ Longest Palindromic Subsequence - A subsequence in the String which is palindrom
 */
 
 //TC=O(2^n), SC=O(1)
-int lcsrecursion(int n, int m, string s1, string s2)
+int lpsrecursion(int n, int m, string s1, string s2)
 {
     if(n==0 || m==0)
     {
         return 0;
     }
+    //checking from last if characters from both strings have same value
+    //then reduce length of both strings in next recursion call
+    //1+ is done for counting this index value being same
     if(s1[n-1]==s2[m-1])
     {
-        //since last index is common so +1 is done for that index
-        //because in recursion calls we are chceking from 2nd last index to beginning
-        //also here we got last index same so boh x-1,y-1 called
-        return 1+lcsrecursion(n-1,m-1,s1,s2);
+        return 1+lpsrecursion(n-1,m-1,s1,s2);
     }
-    else
-    {
-        //we have 2 choices- x-1 & y, x & y-1 for both strings
-        return max(lcsrecursion(n-1,m,s1,s2),lcsrecursion(n,m-1,s1,s2));
-    }
+    //if not same then reduce length of each one by one in next recursion calls
+    //then return the max length obtained
+    return max(lpsrecursion(n-1,m,s1,s2),lpsrecursion(n,m-1,s1,s2));
 }
 
 //TC=O(n), SC=O(n^2)
-int lcsmemoization(int n, int m, string s1, string s2,vector<vector<int>>&dp)
+int lpsmemoization(int n, int m, string s1, string s2, vector<vector<int>>&dp)
 {
     if(n==0 || m==0)
     {
         return 0;
     }
-    //check if value is present in dp vector
     if(dp[n][m]!=-1)
     {
-    	return dp[n][m];
-	}
+        return dp[n][m];
+    }
+    //checking from last if characters from both strings have same value
+    //then reduce length of both strings in next recursion call
+    //1+ is done for counting this index value being same
     if(s1[n-1]==s2[m-1])
     {
-        //store computed value in dp vector
-        return dp[n][m]=1+lcsmemoization(n-1,m-1,s1,s2,dp);
+        return dp[n][m]=1+lpsmemoization(n-1,m-1,s1,s2);
     }
-    else
-    {
-        //store computed value in dp vector
-        return dp[n][m]=max(lcsmemoization(n-1,m,s1,s2,dp),lcsmemoization(n,m-1,s1,s2,dp));
-    }
+    //if not same then reduce length of each one by one in next recursion calls
+    //then return the max length obtained
+    return dp[n][m]=max(lpsmemoization(n-1,m,s1,s2),lpsmemoization(n,m-1,s1,s2));
 }
 
 int main()
